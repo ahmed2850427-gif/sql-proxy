@@ -72,6 +72,9 @@ app.post('/api/sqlproxy/execute', async (req, res) => {
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
-    console.log(`SQL Proxy listening on port ${port}`);
-});
+if (require.main === module) {
+    app.listen(port, () => {
+        console.log(`SQL Proxy listening on port ${port}`);
+    });
+}
+module.exports = app;
